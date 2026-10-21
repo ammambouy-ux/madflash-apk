@@ -1,29 +1,15 @@
 # MadFlash — мобильный редактор 2D-анимации
 
-Исходный проект: React + Vite + Capacitor. APK собирается в GitHub Actions; готовый APK не хранится в репозитории.
+APK собирается через GitHub Actions. Архив проекта должен называться `madflash-apk-cloud-build.zip`.
 
-## Сборка APK через GitHub Actions
+## Как запустить сборку с телефона
 
-1. Распакуй архив проекта на телефоне.
-2. Открой репозиторий `ammambouy-ux/madflash-apk` и загрузи в корень **содержимое папки `madflash-apk`**, а не ZIP-файл целиком.
-3. Проверь, что вместе с файлами загружена папка `.github/workflows` с файлом `build-apk.yml`. Если скрытая папка не отображается в файловом менеджере, включи показ скрытых файлов.
-4. Сделай Commit changes. Сборка должна запуститься автоматически. Также её можно запустить из вкладки **Actions** через workflow **Build MadFlash APK** → **Run workflow**.
-5. Открой завершённый запуск workflow и скачай артефакт **MadFlash-debug-apk**. Внутри находится `app-debug.apk`.
+1. Сохрани ZIP-архив проекта на телефон.
+2. Открой [репозиторий madflash-apk](https://github.com/ammambouy-ux/madflash-apk).
+3. Нажми **Add file → Upload files**, выбери `madflash-apk-cloud-build.zip` и загрузи его **в корень репозитория**. Не распаковывай архив.
+4. Нажми **Commit changes**. Workflow **Build MadFlash APK from ZIP** должен запуститься автоматически.
+5. Открой вкладку **Actions**, выбери завершённый запуск и скачай артефакт **MadFlash-debug-apk**. Внутри будет `app-debug.apk`.
 
-## Локальная разработка
+Если запуск не стартовал автоматически: **Actions → Build MadFlash APK from ZIP → Run workflow**.
 
-Требования: Node.js 20+, JDK 17, Android SDK.
-
-```bash
-npm install
-npm run dev
-npm run build
-npx cap add android
-npx cap sync android
-cd android
-./gradlew assembleDebug
-```
-
-Результат: `android/app/build/outputs/apk/debug/app-debug.apk`.
-
-Примечание: debug APK подходит для установки и тестирования на Android, но не является релизной сборкой для публикации в магазине.
+Сборка создаёт debug APK для установки и тестирования на Android; это не релизный пакет для публикации в магазине.
